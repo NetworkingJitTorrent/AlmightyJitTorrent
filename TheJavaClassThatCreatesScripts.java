@@ -25,6 +25,7 @@ public class TheJavaClassThatCreatesScripts {
               makeSetupRemoteScript(peerInfo);
               makeRunRemoteScript(peerInfo);
               bringThemBoysHome(peerInfo, commonConfig.getFileName());
+              makePermissionsScript(true);
           } catch(Exception e){
               e.printStackTrace();
           }
@@ -34,10 +35,30 @@ public class TheJavaClassThatCreatesScripts {
             makeDirectoriesScript(peerInfo);
             makeSetupLocalScript(peerInfo);
             makeRunLocalScript(peerInfo);
+            makePermissionsScript(false);
           } catch (Exception e){
             e.printStackTrace();
           }
         }
+    }
+
+    public static void makePermissionsScript(boolean isRemote) throws Exception{
+      PrintWriter writer = new PrintWriter("ScriptGivePermissions", "UTF-8");
+      writer.println("#!/bin/bash\n");
+
+      writer.println("echo Giving permissions to other scripts\n");
+      writer.println("CHMOD 700 ScriptCreateDirectories");
+
+      if (isRemote){
+        writer.println("CHMOD 700 ScriptSetupRemoteEnvironments");
+        writer.println("CHMOD 700 ScriptRunRemotePeers");
+        writer.println("CHMOD 700 ScriptBringThemBoysHome");
+      } else{
+        writer.println("CHMOD 700 ScriptSetupLocalEnvironments");
+        writer.println("CHMOD 700 ScriptRunLocalPeers");
+      }
+
+      writer.close();
     }
 
     public static void makeDirectoriesScript(List<PeerInfo> peerInfo) throws Exception{
