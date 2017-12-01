@@ -410,9 +410,6 @@ public class Peer implements ClientDelegate, ServerDelegate {
         // determine missing piece that the server has
         int missingPiece = inMemFile.getMissingPieceFromServerBitSet(bitField, serverBitfields.get(serverPeerID), -1, numPieces);
 
-        String messageWithPiece =  "and is missing piece (uc) " + missingPiece + ".";
-        JitTorrentLogger.logMessageForPeerID(peerID, messageWithPiece);
-
         // create request if anything is missing
         if (missingPiece >= 0) {
             byte[] requestPayload = ByteBuffer.allocate(4).putInt(missingPiece).array();
@@ -518,9 +515,6 @@ public class Peer implements ClientDelegate, ServerDelegate {
             Message haveMessage = MessageType.HAVE.createMessageFromPayload(havePayload);
             this.server.sendMessageToAllClients(haveMessage);
 
-            String messageWithPiece =  "and is missing piece (p) " + missingPiece + ".";
-            JitTorrentLogger.logMessageForPeerID(peerID, messageWithPiece);
-
             if (missingPiece >= 0) {
                 // since it has a missing piece the server has then send request
                 byte[] requestPayload = ByteBuffer.allocate(4).putInt(missingPiece).array();
@@ -603,16 +597,11 @@ public class Peer implements ClientDelegate, ServerDelegate {
 
     @Override
     public Message onRequestReceived(Message message, int clientPeerID) {
-        String messageToLog =  "Peer " + peerID + " received the 'request' message from " + clientPeerID + ".";
-        JitTorrentLogger.logMessageForPeerID(peerID, messageToLog);
         // if it is one of our preferred neighbors or optimistic buddy then service the request
         // if not then ignore
         if (preferredNeighbors.contains(clientPeerID) || (optimisticallyUnchokedNeighbor != null && optimisticallyUnchokedNeighbor == clientPeerID)) {
             // get requested piece number
             int pieceNumber = ByteBuffer.wrap(message.getPayloadField()).getInt();
-
-            String messageWithPiece = "With piece number: " + pieceNumber;
-            JitTorrentLogger.logMessageForPeerID(peerID, messageWithPiece);
 
             // error check the bounds
             if (pieceNumber <= numPieces) {
