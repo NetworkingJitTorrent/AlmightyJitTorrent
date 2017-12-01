@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ssh nbmiller@lin309-04.cise.ufl.edu "cd Documents/; tar -zxvf project.tgz; java PeerProcessRemote 1003"
