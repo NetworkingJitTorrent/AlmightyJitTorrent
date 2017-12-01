@@ -21,8 +21,6 @@ The first config file is the ***Common.cfg***. Everything will use this file and
 
 ----
 
-
-
 ## **PeerInfo.cfg and PeerInfoRemote.cfg**
 
 **Description**
