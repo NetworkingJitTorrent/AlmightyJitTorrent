@@ -50,7 +50,7 @@ This file contains information about all of the peers that will be in the system
 	* `java TheJavaClassThatCreatesScripts [username]`
 3. Run ***ScriptCreateDirectories*** to make all the peer_[peerID] directories.
 4. For any peers that will already have the file on startup, place the file into the appropriate peer_[peerID] directories.
-5. Run ***ScriptSetupRemoteEnvironment*** to clean, build, zip, and copy files over to the remote machines.
+5. Run ***ScriptSetupRemoteEnvironments*** to clean, build, zip, and copy files over to the remote machines.
 6. Run ***ScriptRunRemotePeers*** to start the remote sessions and run the program.
 7. Run ***ScriptBringThemBoysHome*** to copy the log files and downloaded files from the remote machine to the current machine.
 
