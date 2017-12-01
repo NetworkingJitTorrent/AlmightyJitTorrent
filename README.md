@@ -48,7 +48,7 @@ This file contains information about all of the peers that will be in the system
 	* `javac TheJavaClassThatCreatesScripts.java`
 2. Run ***TheJavaClassThatCreatesScripts.java*** with the command:
 	* `java TheJavaClassThatCreatesScripts [username]`
-3. Run ***ScriptMakeDirectories*** to make all the peer_[peerID] directories.
+3. Run ***ScriptCreateDirectories*** to make all the peer_[peerID] directories.
 4. For any peers that will already have the file on startup, place the file into the appropriate peer_[peerID] directories.
 5. Run ***ScriptSetupRemoteEnvironment*** to clean, build, zip, and copy files over to the remote machines.
 6. Run ***ScriptRunRemotePeers*** to start the remote sessions and run the program.
@@ -62,9 +62,9 @@ Follow these steps if your PeerInfo.cfg indicates that peers will be ran on loca
 	* `javac TheJavaClassThatCreatesScripts.java`
 2. Run ***TheJavaClassThatCreatesScripts.java*** with the command:
 	* `java TheJavaClassThatCreatesScripts`
-3. Run ***ScriptMakeDirectories*** to make all the peer_[peerID] directories.
+3. Run ***ScriptCreateDirectories*** to make all the peer_[peerID] directories.
 4. For any peers that will already have the file on startup, place the file into the appropriate peer_[peerID] directories.
-5. Run ***ScriptSetupLocalEnvironment*** to clean and build.
+5. Run ***ScriptSetupLocalEnvironments*** to clean and build.
 6. Run ***ScriptRunLocalPeers*** to start and run the peers.
 
 

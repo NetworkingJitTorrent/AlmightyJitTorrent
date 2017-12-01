@@ -23,7 +23,7 @@ public class TheJavaClassThatCreatesScripts {
           try{
               makeDirectoriesScript(peerInfo);
               makeSetupRemoteScript(peerInfo);
-              makeRunRemotecript(peerInfo);
+              makeRunRemoteScript(peerInfo);
               bringThemBoysHome(peerInfo, commonConfig.getFileName());
           } catch(Exception e){
               e.printStackTrace();
@@ -34,8 +34,9 @@ public class TheJavaClassThatCreatesScripts {
             makeDirectoriesScript(peerInfo);
             makeSetupLocalScript(peerInfo);
             makeRunLocalScript(peerInfo);
+          } catch (Exception e){
+            e.printStackTrace();
           }
-
         }
     }
 
@@ -88,7 +89,7 @@ public class TheJavaClassThatCreatesScripts {
             createLocalScriptPeer(scriptName, peerInfo.get(i), i);
 
             writer.println("osascript -e 'tell application \"Terminal\" to do script \"cd " + PROJECT_DIRECTORY + "; chmod 700 " + scriptName + "; ./" + scriptName + "\"'");
-            writer.println("sleep 10s");
+            writer.println("sleep 1s");
         }
 
         writer.close();
