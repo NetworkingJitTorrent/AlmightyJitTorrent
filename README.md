@@ -70,4 +70,6 @@ Follow these steps if your PeerInfo.cfg indicates that peers will be ran on loca
 
 NOTE: If you are getting a permission error when running these scripts, you may need to run `CHMOD 700 [filename]`
 
+----
+
 Thanks for reading and have fun! :smiley:
