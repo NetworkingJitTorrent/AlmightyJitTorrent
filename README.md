@@ -22,7 +22,7 @@ The first config file is the ***Common.cfg***. Everything will use this file and
 
 ## **PeerInfo.cfg and PeerInfoRemote.cfg**
 
-**Description**
+__**Description**__
 These are used by two different files to create the peers. If you are running on localhosts then you need to use ***PeerInfo.cfg*** and compile/run ***StartTestEnv.java***. If you are running remote peers then you will need to use ***PeerInfoRemote.cfg***, compile/run ***TheJavaClassThatCreatesScripts.java*** (where the command line argument is your username for the remote machines), and then run three scripts (***ScriptSetupEnvironment***, ***ScriptRunRemotePeers***, and ***ScriptBringThemBoysHome***).
 
 **File Content Organization**
@@ -37,12 +37,12 @@ The first type of peer info config file is the ***PeerInfo.cfg***. This is the c
 
 > **Example:**
 
-> 1001 localhost 6008 1
-> 1002 localhost 6009 0
-> 1003 localhost 6010 0
-> 1004 localhost 6011 0
-> 1005 localhost 6012 0
-> 1006 localhost 6013 0
+> - 1001 localhost 6008 1
+> - 1002 localhost 6009 0
+> - 1003 localhost 6010 0
+> - 1004 localhost 6011 0
+> - 1005 localhost 6012 0
+> - 1006 localhost 6013 0
 
 ### **PeerInfoRemote.cfg**
 **Description**
