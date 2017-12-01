@@ -1,14 +1,13 @@
 # **Welcome to the AlmightyJitTorrent!**
 
-This is a simplified version of BitTorrent. It can be run with a common config file and from two different peer info config files and has both an Intellij Project and Command Line Project.
-
+This is a simplified version of BitTorrent. It can be run with a common config file and a peer info config files from the terminal.
 ----------
 
 ## **Common.cfg**
 
 **Description**
 
-The first config file is the ***Common.cfg***. Everything will use this file and it needs to have all the information below (excluding the values).
+The first config file is the ***Common.cfg***. Everything will use this file and it needs to have the following format:
 
 > **Example:**
 
@@ -21,49 +20,16 @@ The first config file is the ***Common.cfg***. Everything will use this file and
 
 ----
 
-## **PeerInfo.cfg and PeerInfoRemote.cfg**
+## **PeerInfo.cfg**
 
 **Description**
 
-These are used by two different files to create the peers. If you are running on localhosts then you need to use ***PeerInfo.cfg*** and compile/run ***StartTestEnv.java***. If you are running remote peers then you will need to use ***PeerInfoRemote.cfg***, compile/run ***TheJavaClassThatCreatesScripts.java*** (where the command line argument is your username for the remote machines), and then run three scripts (***ScriptSetupEnvironment***, ***ScriptRunRemotePeers***, and ***ScriptBringThemBoysHome***).
+This file contains information about all of the peers that will be in the system. It should have the following format:
+
 
 **File Content Organization**
 
-The first attribute is the PeerID.
-The second attribute is the host name.
-The third attribute is the port number.
-The fourth attribute is a 1 if the peer contains the file or a 0 if not.
-
-### **PeerInfo.cfg**
-
-**Description**
-
-The first type of peer info config file is the ***PeerInfo.cfg***. This is the config used for a localhost, or a  non-remote session. You can test it by compiling and running ***StartTestEnv.java***.
-
-> **Example:**
-
-> - 1001 localhost 6008 1
-> - 1002 localhost 6009 0
-> - 1003 localhost 6010 0
-> - 1004 localhost 6011 0
-> - 1005 localhost 6012 0
-> - 1006 localhost 6013 0
-
-### **PeerInfoRemote.cfg**
-
-**Description**
-
-The second type of peer info config file is the ***PeerInfoRemote.cfg***. This is the config used for remote sessions.
-
-**How To Run**
-
-1. Compile ***TheJavaClassThatCreatesScripts.java*** with the command:
-	* javac TheJavaClassThatCreatesScripts.java
-2. Run ***TheJavaClassThatCreatesScripts.java*** with the command:
-	* java TheJavaClassThatCreatesScripts [insert your username]
-3. Run ***ScriptSetupEnvironment*** to clean, build, zip, and copy files over to the remote machines.
-4. Run ***ScriptRunRemotePeers*** to start the remote sessions and run the program.
-5. Run ***ScriptBringThemBoysHome*** to copy the log files and downloaded files from the remote machine to the current machine.
+[PeerID] [Hostname] [port] [hasFile]
 
 > **Example:**
 
@@ -75,5 +41,33 @@ The second type of peer info config file is the ***PeerInfoRemote.cfg***. This i
 > - 1006 lin309-07.cise.ufl.edu 5095 0
 
 ----
+
+**How To Run on Remote Peers**
+
+1. Compile ***TheJavaClassThatCreatesScripts.java*** with the command:
+	* `javac TheJavaClassThatCreatesScripts.java`
+2. Run ***TheJavaClassThatCreatesScripts.java*** with the command:
+	* `java TheJavaClassThatCreatesScripts [username]`
+3. Run ***ScriptCreateDirectories*** to make all the peer_[peerID] directories.
+4. For any peers that will already have the file on startup, place the file into the appropriate peer_[peerID] directories.
+5. Run ***ScriptSetupRemoteEnvironment*** to clean, build, zip, and copy files over to the remote machines.
+6. Run ***ScriptRunRemotePeers*** to start the remote sessions and run the program.
+7. Run ***ScriptBringThemBoysHome*** to copy the log files and downloaded files from the remote machine to the current machine.
+
+**How To Run on Local Peers**
+
+Follow these steps if your PeerInfo.cfg indicates that peers will be ran on localhost (on different ports).
+
+1. Compile ***TheJavaClassThatCreatesScripts.java*** with the command:
+	* `javac TheJavaClassThatCreatesScripts.java`
+2. Run ***TheJavaClassThatCreatesScripts.java*** with the command:
+	* `java TheJavaClassThatCreatesScripts`
+3. Run ***ScriptCreateDirectories*** to make all the peer_[peerID] directories.
+4. For any peers that will already have the file on startup, place the file into the appropriate peer_[peerID] directories.
+5. Run ***ScriptSetupLocalEnvironments*** to clean and build.
+6. Run ***ScriptRunLocalPeers*** to start and run the peers.
+
+
+NOTE: If you are getting a permission error when running these scripts, you may need to run `CHMOD 700 [filename]`
 
 Thanks for reading and have fun! :smiley:
